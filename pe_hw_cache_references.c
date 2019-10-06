@@ -1,8 +1,8 @@
 
 /* 
- * perf_examples/pe_hw_instructions.c
+ * perf_examples/pe_hw_cache_references.c
  *
- * -- example program to count the instructions
+ * -- example program to count the last level cache access
  *
  * PERF_FORMAT_TOTAL_TIME_ENABLED = disabled
  * PERF_FORMAT_TOTAL_TIME_RUNNING = disabled
@@ -27,7 +27,7 @@ int main( void )
   memset(&pe_attr, 0, sizeof(pe_attr));
   pe_attr.type= PERF_TYPE_HARDWARE;
   pe_attr.size = sizeof(struct perf_event_attr);
-  pe_attr.config = PERF_COUNT_HW_INSTRUCTIONS;
+  pe_attr.config = PERF_COUNT_HW_CACHE_REFERENCES;
   pe_attr.disabled = 1;
   pe_attr.exclude_kernel = 1;
   pe_attr.exclude_hv = 1;
@@ -54,7 +54,7 @@ int main( void )
   read(fd, &value, sizeof(value));
 
   /* print result */
-  fprintf(stdout, "Instructions = %lu\n", value);
+  fprintf(stdout, "Cache References = %lu\n", value);
 
   return EXIT_SUCCESS;
 }

@@ -39,7 +39,10 @@ LN          = ln -sf
 # source files
 LIB_HDR =
 LIB_SRC =
-EXE_SRC = pe_hw_cpu_cycles.c pe_hw_instructions.c
+EXE_SRC = pe_hw_cpu_cycles.c \
+					pe_hw_instructions.c \
+					pe_hw_cache_references.c\
+					pe_hw_cache_misses.c
 
 # derived files
 EXE = $(EXE_SRC:.c=.x)
@@ -50,16 +53,11 @@ OBJ = $(EXE_SRC:.c=.o) $(LIB_SRC:.c=.o)
 # build targets
 all: $(EXE)
 
-pe_hw_cpu_cycles.x: pe_hw_cpu_cycles.o $(LIB_SRC:.c=.o)
-	$(CC) $(LDFLAGS) -o $@ $^
-
-pe_hw_instructions.x: pe_hw_instructions.o $(LIB_SRC:.c=.o)
-	$(CC) $(LDFLAGS) -o $@ $^
-
 # build rules
-%.o : %.c
+%.x : %.c
 	$(CPP) $(CPPFLAGS) $< > $*.i
 	$(CC) $(CFLAGS) -c $*.i -o $*.o
+	$(CC) $(LDFLAGS) -o $@ $*.o
 
 # additional rules
 clean:
