@@ -42,7 +42,8 @@ LIB_SRC =
 EXE_SRC = pe_hw_cpu_cycles.c \
 					pe_hw_instructions.c \
 					pe_hw_cache_references.c\
-					pe_hw_cache_misses.c
+					pe_hw_cache_misses.c \
+					pe_llc_stats.c
 
 # derived files
 EXE = $(EXE_SRC:.c=.x)
