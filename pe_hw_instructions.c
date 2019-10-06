@@ -1,6 +1,6 @@
 
 /* 
- * perf_examples/pe_hw_cpu_cycles.c
+ * perf_examples/pe_hw_instructions.c
  *
  * -- example program to count the cpu cycles
  *
@@ -27,7 +27,7 @@ int main( void )
   memset(&pe_attr, 0, sizeof(pe_attr));
   pe_attr.type= PERF_TYPE_HARDWARE;
   pe_attr.size = sizeof(struct perf_event_attr);
-  pe_attr.config = PERF_COUNT_HW_CPU_CYCLES;
+  pe_attr.config = PERF_COUNT_HW_INSTRUCTIONS;
   pe_attr.disabled = 1;
   pe_attr.exclude_kernel = 1;
   pe_attr.exclude_hv = 1;
@@ -54,7 +54,7 @@ int main( void )
   read(fd, &value, sizeof(value));
 
   /* print result */
-  fprintf(stdout, "CPU Cycles = %lu\n", value);
+  fprintf(stdout, "Instructions = %lu\n", value);
 
   return EXIT_SUCCESS;
 }
