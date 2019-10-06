@@ -39,7 +39,7 @@ LN          = ln -sf
 # source files
 LIB_HDR =
 LIB_SRC =
-EXE_SRC = pe_cpu_cycles.c
+EXE_SRC = pe_hw_cpu_cycles.c
 
 # derived files
 EXE = $(EXE_SRC:.c=.x)
@@ -50,7 +50,7 @@ OBJ = $(EXE_SRC:.c=.o) $(LIB_SRC:.c=.o)
 # build targets
 all: $(EXE)
 
-pe_cpu_cycles.x: pe_cpu_cycles.o $(LIB_SRC:.c=.o)
+pe_hw_cpu_cycles.x: pe_hw_cpu_cycles.o $(LIB_SRC:.c=.o)
 	$(CC) $(LDFLAGS) -o $@ $^
 
 # build rules
